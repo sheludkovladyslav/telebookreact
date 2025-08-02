@@ -1,0 +1,12 @@
+.item {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+}
