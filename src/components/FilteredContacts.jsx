@@ -1,6 +1,10 @@
 import css from "./FilteredContacts.module.css";
+import { ContactsContext } from "../contexts/ContactsContext";
+import { useContext } from "react";
 
-export const FilteredContacts = ({ contacts, deleteTask }) => {
+export const FilteredContacts = () => {
+  const { contacts, deleteTask } = useContext(ContactsContext);
+
   return (
     <ul className={css.contacts}>
       {contacts.map((contact, index) => {

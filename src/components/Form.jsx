@@ -1,9 +1,13 @@
-import React, { Component, useState } from "react";
+import React, { Component, use, useContext, useRef, useState } from "react";
 import css from "./Form.module.css";
+import { ContactsContext } from "../contexts/ContactsContext";
 
-export const Form = ({ onAddContact }) => {
+export const Form = () => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const { addContact } = useContext(ContactsContext);
+
+  const inputFocusRef = useRef(null);
 
   const handleChangeName = (event) => {
     setName(event.target.value);
@@ -19,10 +23,12 @@ export const Form = ({ onAddContact }) => {
     const nowName = name;
     const nowNumber = number;
 
-    onAddContact(nowName, nowNumber);
+    addContact(nowName, nowNumber);
 
     setName("");
     setNumber("");
+
+    inputFocusRef.current.focus();
   };
 
   return (
@@ -30,6 +36,7 @@ export const Form = ({ onAddContact }) => {
       <label htmlFor="name">Name</label>
       <input
         type="text"
+        ref={inputFocusRef}
         name="name"
         id="name"
         className={css.input}
